@@ -29,3 +29,7 @@ but not complicated enough that the user could input something that can’t be s
 For example. There will only be one available variable and 4 operations and their inverses excluding integration.
 
 It will solve polynomials numerically.
+
+
+Pretty Template Used:
+https://data-flair.training/blogs/download-android-studio-calculator-project-source-code/
