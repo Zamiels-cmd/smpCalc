@@ -10,6 +10,7 @@ I’ll have a gui of simple user inputs and actions. An output and hopefully sim
 First, I’ll make the ui.
 Then, I’ll make the execution of math.
 - glorified calculator
+ 
 Then, I’ll make math objects (vars, calc operators, etc)
 - basic equation trees
 - algebra
