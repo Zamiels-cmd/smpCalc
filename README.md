@@ -9,14 +9,14 @@ I’ll have a gui of simple user inputs and actions. An output and hopefully sim
 
 First, I’ll make the ui.
 Then, I’ll make the execution of math.
--glorified calculator
+- glorified calculator
 Then, I’ll make math objects (vars, calc operators, etc)
 - basic equation trees
 - algebra
 - simple built in functions
--calc rules
--algorithms
--solve equation trees
+- calc rules
+- algorithms
+- solve equation trees
 I’ll make the output ui.
 Finally, I’ll pretty it up.
 If I have time. I’ll make it complex number friendly.
