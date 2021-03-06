@@ -22,6 +22,7 @@
             android:padding="20sp"
             android:gravity="center|right"
             android:digits="x^%/-*+%1234567890i.()"
+            android:hint="Input For Math"
             android:textSize="30sp" />
 
         <TextView
@@ -32,6 +33,7 @@
             android:layout_weight="0.6"
             android:padding="15sp"
             android:gravity="center|right"
+            android:text="null"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -43,11 +45,23 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/bParenthesis"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="0.2"
+            android:background="@drawable/button"
+            android:text="()"
+            android:textColor="#ecf0f1"
+            android:textSize="20sp" />
+
+
+        <Button
             android:id="@+id/buttonDel"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
-            android:layout_weight="0.25"
+            android:layout_weight="0.2"
             android:background="@drawable/button"
             android:text="Del"
             android:textColor="#ecf0f1"
@@ -58,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
-            android:layout_weight="0.25"
+            android:layout_weight="0.5"
             android:background="@drawable/button"
             android:text="Answer"
             android:textColor="#ecf0f1"
@@ -321,7 +335,6 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/operator_buttons"
-            android:onClick="onClick"
             android:text="="
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
