@@ -93,6 +93,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="x"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -104,6 +105,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/operator_buttons"
+            android:onClick="onClickSimple"
             android:text="^"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -115,6 +117,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/operator_buttons"
+            android:onClick="onClickSimple"
             android:text="%"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -126,6 +129,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/operator_buttons"
+            android:onClick="onClickSimple"
             android:text="/"
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
@@ -145,6 +149,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="1"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -156,6 +161,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="2"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -167,6 +173,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="3"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -178,6 +185,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/operator_buttons"
+            android:onClick="onClickSimple"
             android:text="-"
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
@@ -199,6 +207,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="4"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -210,6 +219,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="5"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -221,6 +231,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="6"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -232,6 +243,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/operator_buttons"
+            android:onClick="onClickSimple"
             android:text="*"
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
@@ -251,6 +263,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="7"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -262,6 +275,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="8"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -273,6 +287,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="9"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -284,6 +299,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/operator_buttons"
+            android:onClick="onClickSimple"
             android:text="+"
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
@@ -302,6 +318,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="."
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -313,6 +330,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="0"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -324,6 +342,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/selector"
+            android:onClick="onClickSimple"
             android:text="i"
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
@@ -335,6 +354,7 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/operator_buttons"
+            android:onClick="onClickSimple"
             android:text="="
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
