@@ -25,7 +25,12 @@ public class MainActivity extends AppCompatActivity {
         answerB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 output.setText(String.valueOf(MathCore.eval(inputText)));
+                try {
+                    output.setText(String.valueOf(MathCore.eval(inputText)));
+                }catch (RuntimeException e){
+                    output.setText(e.getMessage());
+                }
+                 
             }
         });
 
@@ -65,20 +70,21 @@ public class MainActivity extends AppCompatActivity {
         Button selfB = findViewById(v.getId());
         String textOfB=selfB.getText().toString();
         String lastChar = inputText.length() > 1 ? inputText.substring(inputText.length() - 1) : inputText;
-        if (textOfB.equals("=")||textOfB.equals("x")){
+        if (textOfB.equals("=")||textOfB.equals("x")|| textOfB.equals("i")){
             return;
         }
 
-        if (MathCore.isInt(textOfB)){
+        if (MathCore.isInt(textOfB)||textOfB.equals(".")){
             if (lastChar.equals(".") || MathCore.isInt(lastChar)){
-                inputText+=lastChar;
+                if (lastChar.equals(".")&&textOfB.equals(".")){return;}
+                    inputText+=textOfB;
             }else if(lastChar.equals(")")||lastChar.equals("x")){
                 inputText+=" * "+textOfB;
             }
             else{
                 inputText+=" "+textOfB;
             }
-        }else if(textOfB.equals("i")||lastChar.equals(")")){
+        }else if(textOfB.equals("i")){
                 inputText+=" * i";
         }
         else if(lastChar.equals(")")|| MathCore.isInt(lastChar)||

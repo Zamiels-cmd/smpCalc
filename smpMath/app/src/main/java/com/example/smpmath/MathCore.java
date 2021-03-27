@@ -120,7 +120,8 @@ public class MathCore {
                 double x = parseFactor();
                 for (;;) {
                     if      (eat('*')) x *= parseFactor(); // multiplication
-                    else if (eat('/')) x /= parseFactor(); // division
+                    else if (eat('/')) x /= parseFactor();// division
+                    else if (eat('%')) x %= parseFactor();
                     else return x;
                 }
             }
