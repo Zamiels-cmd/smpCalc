@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     String inputText;
@@ -24,12 +28,61 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button parenthB = findViewById(R.id.bParenthesis);
+        parenthB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String lastChar = inputText.length() > 1 ? inputText.substring(inputText.length() - 1) : inputText;
+                Log.i("Debug", "onClickSimple: "+lastChar);
+                if (lastChar.equals(".")){
+                    return;
+                }else if(MathCore.isInt(lastChar)||lastChar.equals(")")){
+                    inputText+=" )";
+                }else{
+                    inputText+=" (";
+                }
+
+                EditText inputv = findViewById(R.id.input);
+                inputv.setText(inputText);
+            }
+        });
+
+        Button delB = findViewById(R.id.buttonDel);
+        delB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputText = (inputText.length() > 0 ? inputText.substring(0,inputText.length() - 1) : inputText).trim();
+                EditText inputv = findViewById(R.id.input);
+                inputv.setText(inputText);
+            }
+        });
+
     }
 
     public void onClickSimple(View v){
+
         Button selfB = findViewById(v.getId());
-        inputText+=selfB.getText().toString();
+        String textOfB=selfB.getText().toString();
+        String lastChar = inputText.length() > 1 ? inputText.substring(inputText.length() - 1) : inputText;
+        if (textOfB.equals("=")){
+            return;
+        }
+
+        if (MathCore.isInt(textOfB)){
+            if (lastChar.equals(".") || MathCore.isInt(lastChar)){
+                inputText+=lastChar;
+            }else{
+                inputText+=" "+textOfB;
+            }
+        }else if(textOfB.equals("i")||lastChar.equals(")")){
+                inputText+=" * i";
+        }
+        else if(lastChar.equals(")")|| MathCore.isInt(lastChar)){
+            inputText+=" "+textOfB;
+        }
+
         EditText inputv = findViewById(R.id.input);
+        Log.i("Debug", "onClickSimple: "+inputText);
         inputv.setText(inputText);
 
     }

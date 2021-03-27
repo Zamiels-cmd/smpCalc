@@ -1,5 +1,7 @@
 package com.example.smpmath;
 
+import java.util.regex.Pattern;
+
 public class MathCore {
     public class multNode{
         Object left;
@@ -53,7 +55,15 @@ public class MathCore {
 
         @Override
         public String toString() {
-            return String.valueOf(real)+" + I"+String.valueOf(imag);
+            return " "+String.valueOf(real)+" + "+String.valueOf(imag)+" * i ";
         }
+    }
+
+    static public Boolean isInt(String value){
+        Pattern pattern = Pattern.compile("\\d+");
+        if (value == null) {
+            return false;
+        }
+        return pattern.matcher(value).matches();
     }
 }

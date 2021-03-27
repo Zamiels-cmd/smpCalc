@@ -17,12 +17,12 @@
             android:id="@+id/input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ecf0f1"
             android:layout_weight="0.4"
-            android:padding="20sp"
-            android:gravity="center|right"
-            android:digits="x^%/-*+%1234567890i.()"
+            android:background="#FFFFFF"
+            android:digits=" x^%/-*+%1234567890i.()"
+            android:gravity="center|end"
             android:hint="Input For Math"
+            android:padding="20sp"
             android:textSize="30sp" />
 
         <TextView
