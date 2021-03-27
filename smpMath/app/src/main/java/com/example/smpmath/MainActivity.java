@@ -20,11 +20,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         inputText="";
         setContentView(R.layout.activity_main);
+        TextView output = findViewById(R.id.display);
         Button answerB = findViewById(R.id.bans);
         answerB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                 output.setText(String.valueOf(MathCore.eval(inputText)));
             }
         });
 
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         Button selfB = findViewById(v.getId());
         String textOfB=selfB.getText().toString();
         String lastChar = inputText.length() > 1 ? inputText.substring(inputText.length() - 1) : inputText;
-        if (textOfB.equals("=")){
+        if (textOfB.equals("=")||textOfB.equals("x")){
             return;
         }
 
