@@ -71,13 +71,17 @@ public class MainActivity extends AppCompatActivity {
         if (MathCore.isInt(textOfB)){
             if (lastChar.equals(".") || MathCore.isInt(lastChar)){
                 inputText+=lastChar;
-            }else{
+            }else if(lastChar.equals(")")||lastChar.equals("x")){
+                inputText+=" * "+textOfB;
+            }
+            else{
                 inputText+=" "+textOfB;
             }
         }else if(textOfB.equals("i")||lastChar.equals(")")){
                 inputText+=" * i";
         }
-        else if(lastChar.equals(")")|| MathCore.isInt(lastChar)){
+        else if(lastChar.equals(")")|| MathCore.isInt(lastChar)||
+                (lastChar.equals("x")&&!textOfB.equals("x")||textOfB.equals("x")&&!lastChar.equals("x")) && !lastChar.equals("^")){
             inputText+=" "+textOfB;
         }
 
