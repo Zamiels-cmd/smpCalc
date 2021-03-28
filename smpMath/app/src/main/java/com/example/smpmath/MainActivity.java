@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Debug", "onClickSimple: "+lastChar);
                 if (lastChar.equals(".")){
                     return;
-                }else if(MathCore.isInt(lastChar)||lastChar.equals(")")){
+                }else if(!lastChar.equals("")&&(MathCore.isInt(lastChar)||lastChar.equals(")"))){
                     inputText+=" )";
                 }else{
                     inputText+=" (";
