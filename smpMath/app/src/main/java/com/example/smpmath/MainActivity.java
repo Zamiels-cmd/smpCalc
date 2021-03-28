@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     inputText+=" (";
                 }
 
-                EditText inputv = findViewById(R.id.input);
+                TextView inputv = findViewById(R.id.input);
                 inputv.setText(inputText);
             }
         });
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 inputText = (inputText.length() > 0 ? inputText.substring(0,inputText.length() - 1) : inputText).trim();
-                EditText inputv = findViewById(R.id.input);
+                TextView inputv = findViewById(R.id.input);
                 inputv.setText(inputText);
             }
         });
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             inputText+=" "+textOfB;
         }
 
-        EditText inputv = findViewById(R.id.input);
+        TextView inputv = findViewById(R.id.input);
         Log.i("Debug", "onClickSimple: "+inputText);
         inputv.setText(inputText);
 
