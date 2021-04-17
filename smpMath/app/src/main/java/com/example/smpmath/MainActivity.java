@@ -26,7 +26,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    output.setText(String.valueOf(MathCore.eval(inputText)));
+                    if (inputText.contains("x")) {
+                        output.setText(inputText);
+                    }else{
+                        output.setText(String.valueOf(MathCore.eval(inputText)));
+                    }
                 }catch (RuntimeException e){
                     output.setText(e.getMessage());
                 }
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Debug", "onClickSimple: "+lastChar);
                 if (lastChar.equals(".")){
                     return;
-                }else if(!lastChar.equals("")&&(MathCore.isInt(lastChar)||lastChar.equals(")"))){
+                }else if(!lastChar.equals("")&&(MathCore.isInt(lastChar)||lastChar.equals("x")||lastChar.equals("i")||lastChar.equals(")"))){
                     inputText+=" )";
                 }else{
                     inputText+=" (";
@@ -65,31 +69,74 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onClickSolve(View v){
+        TextView output = findViewById(R.id.display);
+        try {
+            if (inputText.contains("x")) {
+                String small="0.0001";
+                String text="( "+inputText+" )";
+                String incr=text.replaceAll("x","( x + "+small+" )");
+                String derv="( "+incr+" - ( "+text+ ") ) / ( "+small+" )";
+                String newtonsAdd="( "+text+" ) / ( "+derv+" )";
+                String newtons = "( x - ( "+newtonsAdd+" ) )";
+                ComplexNumber out = new ComplexNumber(.75,.75);
+                int OVER_TIME=100;
+                int overtime=0;
+
+                while (true){
+                    out=MathCore.eval(newtons.replaceAll("x"," ( " +out.toString()+") "));
+                    Log.i("solve", "onClickSolve: " + out.toString() +" and " + newtons);
+                    overtime+=1;
+                    if (overtime>OVER_TIME){
+                        break;
+                    }
+
+                }
+                output.setText(out.toString());
+
+            }else{
+                output.setText((MathCore.eval(inputText).equals(0.0))?"True":"False");
+                Log.i("solve", "onClickSolve: " + MathCore.eval(inputText).toString());
+            }
+
+        }catch (RuntimeException e){
+            output.setText(e.getMessage());
+            output.setText("Null");
+        }
+    }
+
     public void onClickSimple(View v){
 
         Button selfB = findViewById(v.getId());
         String textOfB=selfB.getText().toString();
         String lastChar = inputText.length() > 1 ? inputText.substring(inputText.length() - 1) : inputText;
-        if (textOfB.equals("=")||textOfB.equals("x")|| textOfB.equals("i")){
-            return;
-        }
+        if (textOfB.equals("x")) return;
 
         if (MathCore.isInt(textOfB)||textOfB.equals(".")){
             if (lastChar.equals(".") || MathCore.isInt(lastChar)){
                 if (lastChar.equals(".")&&textOfB.equals(".")){return;}
                     inputText+=textOfB;
-            }else if(lastChar.equals(")")||lastChar.equals("x")){
+            }else if(lastChar.equals(")")||lastChar.equals("x")||lastChar.equals("i")){
                 inputText+=" * "+textOfB;
             }
             else{
                 inputText+=" "+textOfB;
             }
         }else if(textOfB.equals("i")){
+            if( !(lastChar.equals(".")) && (lastChar.equals("i") || lastChar.equals("x") || lastChar.equals(")") || MathCore.isInt(lastChar)))
                 inputText+=" * i";
+            else if(!lastChar.equals(".")){
+                inputText+=" i";
+            }
         }
         else if(lastChar.equals(")")|| MathCore.isInt(lastChar)||
-                (lastChar.equals("x")&&!textOfB.equals("x")||textOfB.equals("x")&&!lastChar.equals("x")) && !lastChar.equals("^")){
-            inputText+=" "+textOfB;
+                ((lastChar.equals("x")||lastChar.equals("i"))&&!(textOfB.equals("x")||textOfB.equals("i"))||(textOfB.equals("x")||textOfB.equals("i"))&&!(lastChar.equals("x")||lastChar.equals("i"))) && !lastChar.equals("^")){
+            if (textOfB.equals("x") && (lastChar.equals("i") || lastChar.equals("x") || lastChar.equals(")") || MathCore.isInt(lastChar))){
+                inputText+=" * "+textOfB;
+            }
+            else{
+                inputText+= " "+textOfB;
+            }
         }
 
         TextView inputv = findViewById(R.id.input);

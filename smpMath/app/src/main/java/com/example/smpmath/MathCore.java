@@ -22,7 +22,8 @@ public class MathCore {
      * @param str
      * @return
      */
-    public static double eval(final String str) {
+
+    public static ComplexNumber eval(final String str) {
         return new Object() {
             int pos = -1, ch;
 
@@ -39,9 +40,9 @@ public class MathCore {
                 return false;
             }
 
-            double parse() {
+            ComplexNumber parse() {
                 nextChar();
-                double x = parseExpression();
+                ComplexNumber x = parseExpression();
                 if (pos < str.length()) throw new RuntimeException("Unexpected: " + (char)ch);
                 return x;
             }
@@ -52,51 +53,56 @@ public class MathCore {
             // factor = `+` factor | `-` factor | `(` expression `)`
             //        | number | functionName factor | factor `^` factor
 
-            double parseExpression() {
-                double x = parseTerm();
+            ComplexNumber parseExpression() {
+                ComplexNumber x = parseTerm();
                 for (;;) {
-                    if      (eat('+')) x += parseTerm(); // addition
-                    else if (eat('-')) x -= parseTerm(); // subtraction
+                    if      (eat('+')) x=x.add(parseTerm()); // addition
+                    else if (eat('-')) x=x.add(parseTerm().mult(-1)); // subtraction
                     else return x;
                 }
             }
 
-            double parseTerm() {
-                double x = parseFactor();
+            ComplexNumber parseTerm() {
+                ComplexNumber x = parseFactor();
                 for (;;) {
-                    if      (eat('*')) x *= parseFactor(); // multiplication
-                    else if (eat('/')) x /= parseFactor();// division
-                    else if (eat('%')) x %= parseFactor();
+                    if      (eat('*')) x =x.mult(parseFactor()); // multiplication
+                    else if (eat('/')) x=x.mult(parseFactor().pow(-1));// division
+                    else if (eat('%')) x=x.mod(parseFactor());
                     else return x;
                 }
             }
 
-            double parseFactor() {
+            ComplexNumber parseFactor() {
                 if (eat('+')) return parseFactor(); // unary plus
-                if (eat('-')) return -parseFactor(); // unary minus
+                if (eat('-')) return parseFactor().mult(-1); // unary minus
 
-                double x;
+                ComplexNumber x;
                 int startPos = this.pos;
                 if (eat('(')) { // parentheses
                     x = parseExpression();
                     eat(')');
                 } else if ((ch >= '0' && ch <= '9') || ch == '.') { // numbers
                     while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
-                    x = Double.parseDouble(str.substring(startPos, this.pos));
+                    x = new ComplexNumber(Double.parseDouble(str.substring(startPos, this.pos)));
+                } else if (eat('i')) x = new ComplexNumber(0,1);
+                    /*
+
                 } else if (ch >= 'a' && ch <= 'z') { // functions
                     while (ch >= 'a' && ch <= 'z') nextChar();
                     String func = str.substring(startPos, this.pos);
-                    x = parseFactor();
+                    x = new ComplexNumber(parseFactor());
                     if (func.equals("sqrt")) x = Math.sqrt(x);
                     else if (func.equals("sin")) x = Math.sin(Math.toRadians(x));
                     else if (func.equals("cos")) x = Math.cos(Math.toRadians(x));
                     else if (func.equals("tan")) x = Math.tan(Math.toRadians(x));
                     else throw new RuntimeException("Unknown function: " + func);
-                } else {
+
+                     */
+                else {
                     throw new RuntimeException("Unexpected: " + (char)ch);
                 }
 
-                if (eat('^')) x = Math.pow(x, parseFactor()); // exponentiation
+                if (eat('^')) x = x.pow(parseFactor()); // exponentiation
 
                 return x;
             }

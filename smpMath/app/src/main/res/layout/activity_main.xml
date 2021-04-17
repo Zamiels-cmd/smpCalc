@@ -29,12 +29,12 @@
             android:id="@+id/display"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ecf0f1"
             android:layout_weight="0.6"
-            android:padding="15sp"
+            android:background="#ecf0f1"
             android:gravity="center|right"
+            android:padding="15sp"
             android:text="null"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -354,8 +354,8 @@
             android:layout_margin="1dp"
             android:layout_weight="0.25"
             android:background="@drawable/operator_buttons"
-            android:onClick="onClickSimple"
-            android:text="="
+            android:onClick="onClickSolve"
+            android:text="=0"
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
 
