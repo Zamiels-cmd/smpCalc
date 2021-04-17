@@ -2,6 +2,10 @@
 
 #SmpMath-David Angelo
 
+Andriod
+Target SDK api 30
+min 23
+
 
 I am going to be making a simple mathematics app that solves simple equations of user input.
 I’ll have a gui of simple user inputs and actions. An output and hopefully simple algebra/calculus/algorithms for solving simple math problems. 
