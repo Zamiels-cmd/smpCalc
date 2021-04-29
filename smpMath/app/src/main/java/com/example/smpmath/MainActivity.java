@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 String newtonsAdd="( "+text+" ) / ( "+derv+" )";
                 String newtons = "( x - ( "+newtonsAdd+" ) )";
                 ComplexNumber out = new ComplexNumber(.75,.75);
-                int OVER_TIME=10;
+                int OVER_TIME=100;
                 int overtime=0;
 
                 while (true){
