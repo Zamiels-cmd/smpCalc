@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
                 while (true){
                     out=MathCore.eval(newtons.replaceAll("x",out.toString()));
-                    Double ERROR=0.0000001;
+                    Double ERROR=0.000000000001;
                     Log.i("solve", "onClickSolve: " + out.toString() +" and " + newtons);
                     overtime+=1;
                     if (overtime>OVER_TIME||MathCore.eval(newtonsAdd.replaceAll("x",out.toString())).abs()<ERROR){
