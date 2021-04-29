@@ -80,14 +80,15 @@ public class MainActivity extends AppCompatActivity {
                 String newtonsAdd="( "+text+" ) / ( "+derv+" )";
                 String newtons = "( x - ( "+newtonsAdd+" ) )";
                 ComplexNumber out = new ComplexNumber(.75,.75);
-                int OVER_TIME=100;
+                int OVER_TIME=10;
                 int overtime=0;
 
                 while (true){
-                    out=MathCore.eval(newtons.replaceAll("x"," ( " +out.toString()+") "));
+                    out=MathCore.eval(newtons.replaceAll("x",out.toString()));
+                    Double ERROR=0.0000001;
                     Log.i("solve", "onClickSolve: " + out.toString() +" and " + newtons);
                     overtime+=1;
-                    if (overtime>OVER_TIME){
+                    if (overtime>OVER_TIME||MathCore.eval(newtonsAdd.replaceAll("x",out.toString())).abs()<ERROR){
                         break;
                     }
 
@@ -101,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
         }catch (RuntimeException e){
             output.setText(e.getMessage());
-            output.setText("Null");
         }
     }
 
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         Button selfB = findViewById(v.getId());
         String textOfB=selfB.getText().toString();
         String lastChar = inputText.length() > 1 ? inputText.substring(inputText.length() - 1) : inputText;
-        if (textOfB.equals("x")) return;
+        //if (textOfB.equals("x")) return;
 
         if (MathCore.isInt(textOfB)||textOfB.equals(".")){
             if (lastChar.equals(".") || MathCore.isInt(lastChar)){

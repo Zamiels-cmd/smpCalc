@@ -1,5 +1,7 @@
 package com.example.smpmath;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -19,6 +21,12 @@ public class ComplexNumber {
 
     }
 
+    public ComplexNumber(ComplexNumber num) {
+        this.re = num.re;
+        this.im = num.im;
+
+    }
+
     public ComplexNumber round(int num){
         return new ComplexNumber(Math.round(this.re*num)/num,Math.round(this.im*num)/num);
     }
@@ -33,48 +41,45 @@ public class ComplexNumber {
 
     public String toString() {
         super.toString();
-        ComplexNumber r=this.round(10000);
-        return String.valueOf(r.re)+" + i * "+String.valueOf(r.im);
+        int DIGITS=1000000;//10^digits wanted
+        return "("+this.re+" + i * "+this.im+")";
     }
 
     public ComplexNumber pow(double num){
         return new ComplexNumber(Math.cos(this.arg()*num),Math.sin(this.arg()*num)).mult(Math.pow(this.abs(),num));
     }
 
-    /*
-    private ComplexNumber modPi(){
-        return new ComplexNumber(this.re,(new ComplexNumber(Math.sin(this.im),Math.cos(this.im)).arg()));
-    }
-
-     */
-
     private ComplexNumber ceil(){
         return new ComplexNumber(Math.ceil(re),Math.ceil(im));
     }
 
     public ComplexNumber mod(ComplexNumber num){
-        return this.add(num.mult((this.mult(num.pow(-1).mult(-1))).ceil()));
+        return this.add(num.mult(this.mult(num.pow(-1).mult(-1)).ceil()));
     }
 
     public ComplexNumber pow(ComplexNumber num){
-        ComplexNumber p=new ComplexNumber(Math.log(this.abs()),this.arg()).mult(num);
-        return new ComplexNumber(Math.cos(p.im),Math.sin(p.im)).mult(Math.exp(p.re));
+        ComplexNumber p=(new ComplexNumber(Math.log(this.abs()),this.arg())).mult(num);
+        Double ex=Math.exp(p.re);
+        ComplexNumber sign = new ComplexNumber(Math.cos(p.im),Math.sin(p.im));
+        //Log.i("pow", ex+" "+sign +" "+sign.mult(ex));
+        return sign.mult(ex);
     }
 
     public ComplexNumber mult(ComplexNumber num){
-        return new ComplexNumber(re*num.re-im*num.im,re*num.im+im*num.re);
+        return new ComplexNumber(this.re*num.re-this.im*num.im,this.re*num.im+this.im*num.re);
     }
 
     public ComplexNumber mult(double num){
-        return new ComplexNumber(re*num,im*num);
+        //Log.i("mult", this.re+" "+num+" "+new ComplexNumber(this.re*num,this.im*num));
+        return new ComplexNumber(this.re*num,this.im*num);
     }
 
     public ComplexNumber add(ComplexNumber num){
-        return new ComplexNumber(re+num.re,im+num.im);
+        return new ComplexNumber(this.re+num.re,this.im+num.im);
     }
 
     public ComplexNumber add(double num){
-        return new ComplexNumber(re+num,im);
+        return new ComplexNumber(this.re+num,this.im);
     }
 
     public double abs(){
@@ -82,6 +87,7 @@ public class ComplexNumber {
     }
 
     public double arg(){
+        //Log.i("arg", im+" "+re+" "+Math.atan2(im,re));
         return Math.atan2(im,re);
     }
 

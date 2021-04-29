@@ -76,33 +76,23 @@ public class MathCore {
                 if (eat('+')) return parseFactor(); // unary plus
                 if (eat('-')) return parseFactor().mult(-1); // unary minus
 
-                ComplexNumber x;
+                ComplexNumber x = null;
                 int startPos = this.pos;
                 if (eat('(')) { // parentheses
                     x = parseExpression();
                     eat(')');
-                } else if ((ch >= '0' && ch <= '9') || ch == '.') { // numbers
-                    while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
+                } else if ((ch >= '0' && ch <= '9') || ch == '.'||ch=='E'||ch=='N'||ch=='a'||ch=='-') { // numbers
+                    while ((ch >= '0' && ch <= '9') || ch == '.'||ch=='E'||ch=='N'||ch=='a'||ch=='-') nextChar();
                     x = new ComplexNumber(Double.parseDouble(str.substring(startPos, this.pos)));
-                } else if (eat('i')) x = new ComplexNumber(0,1);
-                    /*
-
-                } else if (ch >= 'a' && ch <= 'z') { // functions
-                    while (ch >= 'a' && ch <= 'z') nextChar();
-                    String func = str.substring(startPos, this.pos);
-                    x = new ComplexNumber(parseFactor());
-                    if (func.equals("sqrt")) x = Math.sqrt(x);
-                    else if (func.equals("sin")) x = Math.sin(Math.toRadians(x));
-                    else if (func.equals("cos")) x = Math.cos(Math.toRadians(x));
-                    else if (func.equals("tan")) x = Math.tan(Math.toRadians(x));
-                    else throw new RuntimeException("Unknown function: " + func);
-
-                     */
-                else {
-                    throw new RuntimeException("Unexpected: " + (char)ch);
+                } else if (eat('i')){
+                    x = new ComplexNumber(0,1);
                 }
-
-                if (eat('^')) x = x.pow(parseFactor()); // exponentiation
+                else if (ch >= 'a' && ch <= 'z') { // functions
+                    throw new RuntimeException("Unknown: " + ch);
+                }
+                if(x!=null) {
+                    if (eat('^')) x = x.pow(parseFactor()); // exponentiation
+                }
 
                 return x;
             }
